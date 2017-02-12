@@ -568,6 +568,7 @@ int compress_set_gapless_metadata(struct compress *compress,
 	metadata.value[0] = mdata->encoder_delay;
 	if (ioctl(compress->fd, SNDRV_COMPRESS_SET_METADATA, &metadata))
 		return oops(compress, errno, "can't set metadata for stream\n");
+
 	compress->gapless_metadata = 1;
 	return 0;
 }
@@ -647,4 +648,3 @@ int compress_wait(struct compress *compress, int timeout_ms)
 
 	return oops(compress, EIO, "poll signalled unhandled event");
 }
-
